@@ -5,9 +5,18 @@ package kjstyle.study.codility.lesson03;
  */
 public class FrogJump {
 
+	public static void main(String[] args) {
+		FrogJump frogJump = new FrogJump();
+		int result = frogJump.solution(10, 71, 30);
+		System.out.println(result);
+		System.out.println((71 - 10) * 1.0 / 30);
+		System.out.println(Math.ceil(2.4));
+	}
+
 	/**
 	 * 첫번째 생각나는대로 코딩한 방법으로
 	 * O(n) 이 나와서 패스~
+	 *
 	 * @param X
 	 * @param Y
 	 * @param D
@@ -18,7 +27,7 @@ public class FrogJump {
 		int jumpCount = 0;
 		int movingDistance = X;
 		while (movingDistance < Y) {
-			jumpCount ++;
+			jumpCount++;
 			movingDistance += D;
 		}
 		return jumpCount;
@@ -32,20 +41,13 @@ public class FrogJump {
 	 * 그래서 실제 움지여야할 거리(Y-X)에 0.1을 곱해서 실수로 만든다음 단위거리로 나눠서 실수 결과를 얻은다음 ceil로 올림처리
 	 * 이럴 경우 몫이 딱 떨어지는 경우 동등조건에 해당하니 통과되고
 	 * 소수점 이하 숫자가 발생하는 경우에는 한번 더 점프해야하니 올림처리로 타켓거리를 넘어설 수 있게 된다.
+	 *
 	 * @param X
 	 * @param Y
 	 * @param D
 	 * @return
 	 */
 	public int solution(int X, int Y, int D) {
-		return (int) Math.ceil( (Y-X)*1.0/D );
-	}
-
-	public static void main(String[] args) {
-		FrogJump frogJump = new FrogJump();
-		int result = frogJump.solution(10, 71, 30);
-		System.out.println(result);
-		System.out.println( (71 - 10)*1.0 / 30 );
-		System.out.println( Math.ceil(2.4) );
+		return (int) Math.ceil((Y - X) * 1.0 / D);
 	}
 }
