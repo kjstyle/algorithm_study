@@ -177,6 +177,7 @@ public class MissingInteger {
 	 * HashSet에 발견된 숫자를 담아서
 	 * 1부터 정수최댓값까지 숫차적으로 HashSet에 들어있는지 확인해서
 	 * 없는게 발견되면 바로 해당 index리턴
+	 * 사실 인터넷 찾아서 참고해서 푼 것..ㅡㅡ
 	 *
 	 * @param A
 	 * @return
