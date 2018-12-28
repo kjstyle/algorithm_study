@@ -3,12 +3,53 @@ package kjstyle.study.codility.lesson04;
 import java.util.Arrays;
 
 /**
- * Created by kjstyle on 2018. 8. 30..
+ A non-empty array A consisting of N integers is given.
+ A permutation is a sequence containing each element from 1 to N once, and only once.
+ For example, array A such that:
+
+ A[0] = 4
+ A[1] = 1
+ A[2] = 3
+ A[3] = 2
+ is a permutation, but array A such that:
+
+ A[0] = 4
+ A[1] = 1
+ A[2] = 3
+ is not a permutation, because value 2 is missing.
+
+ The goal is to check whether array A is a permutation.
+
+ Write a function:
+
+ class Solution { public int solution(int[] A); }
+
+ that, given an array A, returns 1 if array A is a permutation and 0 if it is not.
+
+ For example, given array A such that:
+
+ A[0] = 4
+ A[1] = 1
+ A[2] = 3
+ A[3] = 2
+ the function should return 1.
+
+ Given array A such that:
+
+ A[0] = 4
+ A[1] = 1
+ A[2] = 3
+ the function should return 0.
+
+ Write an efficient algorithm for the following assumptions:
+
+ N is an integer within the range [1..100,000];
+ each element of array A is an integer within the range [1..1,000,000,000].
  */
 public class PermCheck {
 
 	public static void main(String[] args) {
-		int[] A = {2};
+		int[] A = {4, 1, 3};
 		PermCheck permCheck = new PermCheck();
 		int result = permCheck.solution(A);
 		System.out.println(result);
@@ -35,10 +76,12 @@ public class PermCheck {
 	public int solution(int[] A) {
 		int len = A.length;
 
+		// 정렬시킨 후
 		Arrays.sort(A);
 		for (int i = 1; i < len; i++) {
+			// 현재 엘리먼트와 이전 엘리먼트 사이의 간격이 1이 아닌 경우 지금 엘리먼트 바로 직전의 수가 누락된 녀석임
 			if ((A[i] - A[i - 1]) != 1) {
-				return 0;
+				return A[i] - 1;
 			}
 		}
 		// loop를 통과했고 배열의 길이와 마지막 요소의 값이 같을 경우 순열로 인정

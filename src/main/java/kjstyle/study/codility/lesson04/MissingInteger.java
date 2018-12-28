@@ -4,35 +4,56 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 /**
- * Created by kjstyle on 2018. 9. 3..
+ This is a demo task.
+
+ Write a function:
+
+ class Solution { public int solution(int[] A); }
+
+ that, given an array A of N integers,
+ returns the smallest positive integer (greater than 0) that does not occur in A.
+ 배열A 없는 0초과인 가장 작은 양수를 리털
+
+ For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.
+
+ Given A = [1, 2, 3], the function should return 4.
+
+ Given A = [−1, −3], the function should return 1.
+
+ Write an efficient algorithm for the following assumptions:
+
+ N is an integer within the range [1..100,000];
+ each element of array A is an integer within the range [−1,000,000..1,000,000].
+
  */
 public class MissingInteger {
 
 	public static void main(String[] args) {
 		MissingInteger missingInteger = new MissingInteger();
 		int[] A = {1, 3, 6, 4, 1, 2};
-		System.out.println("A : 5 = " + missingInteger.solution(A));
+
+		System.out.println("A{1, 3, 6, 4, 1, 2} : 5 = " + missingInteger.solution(A));
 
 		int[] B = {-2, -3};
-		System.out.println("B : 1 = " + missingInteger.solution(B));
+		System.out.println("B{-2, -3} : 1 = " + missingInteger.solution(B));
 
 		int[] C = {1, 2, 3};
-		System.out.println("C : 4 = " + missingInteger.solution(C));
+		System.out.println("C{1, 2, 3} : 4 = " + missingInteger.solution(C));
 
 		int[] D = {2};
-		System.out.println("D : 1 = " + missingInteger.solution(D));
+		System.out.println("D{2} : 1 = " + missingInteger.solution(D));
 
 		int[] E = {1};
-		System.out.println("E : 2 = " + missingInteger.solution(E));
+		System.out.println("E{1} : 2 = " + missingInteger.solution(E));
 
 		int[] F = {4, 5, 6, 2};
-		System.out.println("F : 1 = " + missingInteger.solution(F));
+		System.out.println("F{4, 5, 6, 2} : 1 = " + missingInteger.solution(F));
 
 		int[] G = {1};
-		System.out.println("G : 2 = " + missingInteger.solution(G));
+		System.out.println("G{1} : 2 = " + missingInteger.solution(G));
 
 		int[] H = {90, 91, 92, 93};
-		System.out.println("H : 1 = " + missingInteger.solution(H));
+		System.out.println("H{90, 91, 92, 93} : 1 = " + missingInteger.solution(H));
 	}
 
 	/**
@@ -178,6 +199,7 @@ public class MissingInteger {
 	 * 1부터 정수최댓값까지 숫차적으로 HashSet에 들어있는지 확인해서
 	 * 없는게 발견되면 바로 해당 index리턴
 	 * 사실 인터넷 찾아서 참고해서 푼 것..ㅡㅡ
+	 * 무식해보이지만 최악의 경우라도 최대 정수크기만큼까지만 루프를 도는거라 결국 O(N)
 	 *
 	 * @param A
 	 * @return
