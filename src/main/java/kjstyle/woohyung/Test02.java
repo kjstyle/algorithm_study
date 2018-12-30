@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static java.util.Comparator.comparing;
 
 /**
- * Created by kjstyle on 30/12/2018.
+ 날짜형태가 잘못되어 프로그램을 종료합니다 => " + i + "번째 열, 날짜 => " + cols[2]
  */
 public class Test02 {
 
