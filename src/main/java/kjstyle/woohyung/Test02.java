@@ -3,10 +3,13 @@ package kjstyle.woohyung;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparing;
 
 /**
  * Created by kjstyle on 30/12/2018.
@@ -31,7 +34,7 @@ public class Test02 {
 			"g.jpg, Warsaw, 2016-02-29 22:13:11";
 
 		Test02 test02 = new Test02();
-		test02.solution(S);
+		System.out.println(test02.solution(S));
 	}
 
 	public String solution(String S) {
@@ -50,16 +53,39 @@ public class Test02 {
 				System.out.println("날짜형태가 잘못되어 프로그램을 종료합니다 => " + i + "번째 열, 날짜 => " + cols[2]);
 				return "";
 			}
-			photoList.add(new Photo(i, cols[0], cols[1], created));
+			String extension = cols[0].split("\\.")[1];
+			photoList.add(new Photo(i, cols[0], cols[1], created, extension));
 		}
 
 		Map<String, List<Photo>> groupByCityMap = photoList
 			.stream()
+			.sorted(comparing((Photo p) -> p.created))
 			.collect(Collectors.groupingBy(Photo::getCity));
 
 
-		System.out.println(groupByCityMap);
-		return "";
+		List<Photo> resultList = new ArrayList<>();
+
+		groupByCityMap.forEach((city, list) -> {
+			int listCount = list.size();
+			int serial = (int) (Math.log10(listCount) + 1);
+			for (int i = 0; i < listCount; i++) {
+				String newIndexNo = String.format("%0" + serial + "d", (i + 1));
+				String newFileName = city + newIndexNo;
+				list.get(i).setNewFileName(newFileName);
+				resultList.add(list.get(i));
+			}
+		});
+
+		resultList.sort(Comparator.comparing(Photo::getOriginalIndex));
+
+		StringBuilder result = new StringBuilder();
+
+		for (Photo photo : resultList) {
+			result.append(photo.getNewFileName());
+			result.append("\n");
+		}
+
+		return result.toString();
 	}
 
 	private Date convertDateFromString(String strDate) throws ParseException {
@@ -71,12 +97,15 @@ public class Test02 {
 		private String originalFileName;
 		private String city;
 		private Date created;
+		private String newFileName;
+		private String extension;
 
-		public Photo(int originalIndex, String originalFileName, String city, Date created) {
+		public Photo(int originalIndex, String originalFileName, String city, Date created, String extension) {
 			this.originalIndex = originalIndex;
 			this.originalFileName = originalFileName.trim();
 			this.city = city.trim();
 			this.created = created;
+			this.extension = extension.trim();
 		}
 
 		public int getOriginalIndex() {
@@ -95,6 +124,14 @@ public class Test02 {
 			return created;
 		}
 
+		public String getNewFileName() {
+			return newFileName;
+		}
+
+		public void setNewFileName(String newFileName) {
+			this.newFileName = newFileName + "." + this.extension;
+		}
+
 		@Override
 		public String toString() {
 			return "Photo{" +
@@ -102,6 +139,8 @@ public class Test02 {
 				", originalFileName='" + originalFileName + '\'' +
 				", city='" + city + '\'' +
 				", created=" + created +
+				", newFileName='" + newFileName + '\'' +
+				", extension='" + extension + '\'' +
 				'}';
 		}
 	}
