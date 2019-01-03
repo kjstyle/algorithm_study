@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static java.util.Comparator.comparing;
 
 /**
- 날짜형태가 잘못되어 프로그램을 종료합니다 => " + i + "번째 열, 날짜 => " + cols[2]
+ * 사진 정리 문제
  */
 public class Test02 {
 
@@ -45,41 +45,47 @@ public class Test02 {
 		List<Photo> photoList = new ArrayList<>();
 
 		for (int i = 0; i < rowsCount; i++) {
-			String[] cols = rows[i].split(",");
+			String[] cols = rows[i].split(","); // 콤마 구분자로 컬럼들을 구분하고
 			Date created;
 			try {
-				created = convertDateFromString(cols[2]);
+				created = convertDateFromString(cols[2]); // 파일생성일을 Date형으로 변환
 			} catch (ParseException e) {
 				System.out.println("날짜형태가 잘못되어 프로그램을 종료합니다 => " + i + "번째 열, 날짜 => " + cols[2]);
 				return "";
 			}
-			String extension = cols[0].split("\\.")[1];
+			String extension = cols[0].split("\\.")[1]; // 확장자를 분리하고 -> 여기서 말고 생성자에서 할걸...
+
+			// Photo객체를 생성하고 List에 담기
+			// 읽어들인 순서인 i를 originalIndex로해서 나중에 본래 순서대로 출력할 때 사용
 			photoList.add(new Photo(i, cols[0], cols[1], created, extension));
 		}
 
 		Map<String, List<Photo>> groupByCityMap = photoList
 			.stream()
-			.sorted(comparing((Photo p) -> p.created))
-			.collect(Collectors.groupingBy(Photo::getCity));
+			.sorted(comparing((Photo p) -> p.created)) // 날로 정렬시켜서
+			.collect(Collectors.groupingBy(Photo::getCity)); // 도시이름으로 그룹핑해서 Map<String, List<Photo>> 형태로 담는다.
 
 
 		List<Photo> resultList = new ArrayList<>();
 
-		groupByCityMap.forEach((city, list) -> {
+		groupByCityMap.forEach((city, list) -> { // 도시별로 photo리스트가 담긴 Map을 돌면서
 			int listCount = list.size();
-			int serial = (int) (Math.log10(listCount) + 1);
+			int serial = (int) (Math.log10(listCount) + 1); // 자릿수를 알아내서(리스트 사이즈에 따라 파일명 뒤의 숫자 채번형태가 다르니)
+
+			// 그룹내 리스트를 반복하면서 새파일이름을 set한다
 			for (int i = 0; i < listCount; i++) {
 				String newIndexNo = String.format("%0" + serial + "d", (i + 1));
-				String newFileName = city + newIndexNo;
-				list.get(i).setNewFileName(newFileName);
-				resultList.add(list.get(i));
+				String newFileName = city + newIndexNo; // 이런 로직을 setter에 둘걸 그랬음..
+				list.get(i).setNewFileName(newFileName); // setter에서 멤버변수인 extension을 보고 확장자를 붙여줌
+				resultList.add(list.get(i)); // 새파일명을 부여받은 Photo객체를 결과를 출력할 리스트에 담는다.
 			}
 		});
 
+		// 결과리스트를 본래 리스트의 순서대로 정렬시킨다.
 		resultList.sort(Comparator.comparing(Photo::getOriginalIndex));
 
+		// 결과리스트를 루프돌면서 출력 스트링을 생성해서 최종 리턴
 		StringBuilder result = new StringBuilder();
-
 		for (Photo photo : resultList) {
 			result.append(photo.getNewFileName());
 			result.append("\n");

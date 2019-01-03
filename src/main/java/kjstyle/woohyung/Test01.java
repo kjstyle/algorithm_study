@@ -1,7 +1,7 @@
 package kjstyle.woohyung;
 
 /**
- * Created by kjstyle on 30/12/2018.
+A non-negative integer variable V is given.
  */
 public class Test01 {
 
