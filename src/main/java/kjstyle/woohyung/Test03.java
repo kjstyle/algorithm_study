@@ -3,7 +3,7 @@ package kjstyle.woohyung;
 import java.util.HashSet;
 
 /**
- * Created by kjstyle on 30/12/2018.
+ * 엘리베이터 운행횟수 문제
  */
 public class Test03 {
 
