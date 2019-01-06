@@ -1,4 +1,4 @@
-package kjstyle.woohyung;
+package kjstyle.cote01;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,7 +57,7 @@ import static java.util.Comparator.comparing;
  thus, John needs to add some leading zeros to the numbers.
  각 그룹 내의 각 사진의 숫자는 같은 자릿수(length)를 가져야한다.
  (해당 그룹에서 가장 큰 숫자의 자릿수와 같으면 됨)
- 결국엔, John은 숫자앞에 붙는 몇개의 0을 추가해야한다.
+ 따라서, John은 숫자앞에 붙는 몇개의 0을 추가해야한다.
 
  The new name of the photo should end with the extension, which should remain the same.
  새 이름의 사진은 동일한 확장자로 끝나야한다.

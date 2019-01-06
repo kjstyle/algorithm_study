@@ -1,4 +1,4 @@
-package kjstyle.woohyung;
+package kjstyle.cote01;
 
 /**
  * 단 3줄만 수정 가능 (추가,삭제 불가

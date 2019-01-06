@@ -1,4 +1,4 @@
-package kjstyle.woohyung;
+package kjstyle.cote01;
 
 /**
  A non-negative integer variable V is given. There are two actions available
