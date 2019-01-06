@@ -12,7 +12,68 @@ import java.util.stream.Collectors;
 import static java.util.Comparator.comparing;
 
 /**
- * 사진 정리 문제
+ John likes to travel. He has visited a lot of cities over many years.
+ Whenever he visits a city, he takes a few photos and saves them on his
+ computer. Each photo has a name with an extension ("jpg", "png" or
+ jpeg") and there is a record of the name of the city where the photo was
+ taken and the time and date the photo; for example: "photo.jpg,
+ Warsaw, 2013-09-05 14:08:15"
+ Note that, in some rare cases, photos from different locations may share
+ the time and date, due to timezone differences.
+ John notices that his way of filing photos on his computer has become a
+ mess. He wants to reorganize the photos. First he decides to group the
+ photos by city, then, within each such group, sort the photos by the time
+ they were taken and finally assign consecutive natural numbers to the
+ photos, starting from 1. Afterwards he intends to rename all the photos.
+ The new name of each photo should begin with the name of the city
+ followed by the number already assigned to that photo. The number of
+ every photo in each group should have the same length (equal to the lengt
+ of the largest number in this group), thus, John needs to add some leading
+ zeros to the numbers. The new name of the photo should end with the
+ extension, which should remain the same.
+ Your task is to help John by finding the new name of each photo.
+ Each of John's photos has the format: "<<photoname
+ <extension>>, <<city_name>>, yyyy-mm-dd hh :mm:ss", where
+ <photoname>>", <<extension>>"and "<<city name>>" consist
+
+
+ your function should return
+ Warsaw02.jpg
+ Londonl.png
+ Warsaw01.png
+ Paris2.jpg
+ Parisl.jpg
+ London2. jpg
+ Paris3.png
+ Warsawo 3.jpg
+ Warsawo9.png
+ Warsaw07. jpg
+ Warsaw06.ipg
+ Warsaw08.jpg
+ Warsaw04.png
+ Warsaw05.png
+ Warsawl0.jpg
+ as there are ten photos taken in Warsaw (numbered from 01 to 10), tw
+ photos in London (numbered from 1 to 2) and three photos in Paris
+ (numbered from 1 to 3)
+ The new names of the photos are returned in the same order as in the
+ given string
+ Assume that:
+ M is an integer within the range [1.100]
+ . Each year is an integer within the range [2000..2020];
+ . Each line of the input string is of the format"
+ くくphotoname>>·<<extension>>, <<city-name>> ,
+ yyyy-mm-dd hh:mm: ss" and lines are separated with
+ newline characters;
+ Each photo name (without extension)) and city name
+ consists only of at least 1 and at most 20 letters from the
+ English alphabet;
+ - Each name of the city starts with a capital letter and is
+ followed by lower case letters;
+ No two photos from the same location share the same date
+ and time
+ Each extension is jpg" png" or "jpeg
+ In your solution, focus on correctness.
  */
 public class Test02 {
 
@@ -45,47 +106,41 @@ public class Test02 {
 		List<Photo> photoList = new ArrayList<>();
 
 		for (int i = 0; i < rowsCount; i++) {
-			String[] cols = rows[i].split(","); // 콤마 구분자로 컬럼들을 구분하고
+			String[] cols = rows[i].split(",");
 			Date created;
 			try {
-				created = convertDateFromString(cols[2]); // 파일생성일을 Date형으로 변환
+				created = convertDateFromString(cols[2]);
 			} catch (ParseException e) {
 				System.out.println("날짜형태가 잘못되어 프로그램을 종료합니다 => " + i + "번째 열, 날짜 => " + cols[2]);
 				return "";
 			}
-			String extension = cols[0].split("\\.")[1]; // 확장자를 분리하고 -> 여기서 말고 생성자에서 할걸...
-
-			// Photo객체를 생성하고 List에 담기
-			// 읽어들인 순서인 i를 originalIndex로해서 나중에 본래 순서대로 출력할 때 사용
+			String extension = cols[0].split("\\.")[1];
 			photoList.add(new Photo(i, cols[0], cols[1], created, extension));
 		}
 
 		Map<String, List<Photo>> groupByCityMap = photoList
 			.stream()
-			.sorted(comparing((Photo p) -> p.created)) // 날로 정렬시켜서
-			.collect(Collectors.groupingBy(Photo::getCity)); // 도시이름으로 그룹핑해서 Map<String, List<Photo>> 형태로 담는다.
+			.sorted(comparing((Photo p) -> p.created))
+			.collect(Collectors.groupingBy(Photo::getCity));
 
 
 		List<Photo> resultList = new ArrayList<>();
 
-		groupByCityMap.forEach((city, list) -> { // 도시별로 photo리스트가 담긴 Map을 돌면서
+		groupByCityMap.forEach((city, list) -> {
 			int listCount = list.size();
-			int serial = (int) (Math.log10(listCount) + 1); // 자릿수를 알아내서(리스트 사이즈에 따라 파일명 뒤의 숫자 채번형태가 다르니)
-
-			// 그룹내 리스트를 반복하면서 새파일이름을 set한다
+			int serial = (int) (Math.log10(listCount) + 1);
 			for (int i = 0; i < listCount; i++) {
 				String newIndexNo = String.format("%0" + serial + "d", (i + 1));
-				String newFileName = city + newIndexNo; // 이런 로직을 setter에 둘걸 그랬음..
-				list.get(i).setNewFileName(newFileName); // setter에서 멤버변수인 extension을 보고 확장자를 붙여줌
-				resultList.add(list.get(i)); // 새파일명을 부여받은 Photo객체를 결과를 출력할 리스트에 담는다.
+				String newFileName = city + newIndexNo;
+				list.get(i).setNewFileName(newFileName);
+				resultList.add(list.get(i));
 			}
 		});
 
-		// 결과리스트를 본래 리스트의 순서대로 정렬시킨다.
 		resultList.sort(Comparator.comparing(Photo::getOriginalIndex));
 
-		// 결과리스트를 루프돌면서 출력 스트링을 생성해서 최종 리턴
 		StringBuilder result = new StringBuilder();
+
 		for (Photo photo : resultList) {
 			result.append(photo.getNewFileName());
 			result.append("\n");

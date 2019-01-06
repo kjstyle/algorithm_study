@@ -1,7 +1,35 @@
 package kjstyle.woohyung;
 
 /**
-A non-negative integer variable V is given.
+ A non-negative integer variable V is given. There are two actions available
+ that modify its value:
+ - if V is odd, subtract 1 from it;
+ - if V is even, divide it by 2.
+ These actions are performed until the value of V becomes 0.
+ For example, if V initially contains value 28, it will become 0 after seven
+ steps:
+ - V contains value 28, which is even: divide by 2 and obtain 14;
+ - V contains value 14, which is even: divide by 2 and obtain 7
+
+ A non-negative integer variable V is given. There are two actions available
+ that modify its value:
+ - if V is odd, subtract 1 from it;
+ - if V is even, divide it by 2.
+ These actions are performed until the value of V becomes 0.
+ For example, if V initially contains value 28, it will become 0 after seven
+ steps:
+ - V contains value 28, which is even: divide by 2 and obtain 14;
+ - V contains value 14, which is even: divide by 2 and obtain 7
+ - V contains value 7, which is odd: subtract 1 and obtain 6;
+ - V contains value 6, which is even: divide by 2 and obtain 3;
+ - v contains value 3, which is odd: subtract 1 and obtain 2;
+ - V contains value 2, which is even: divide by 2 and obtain 1;
+ - V contains value 1, which is odd: subtract 1 and obtain 0.
+ Write a function:
+ class Solution fpublic int solution(String S);
+ that, given a zero-indexed string S consisting of N characters containing a
+ binary representation of the initial value of variable V, returns the number of
+ steps after which the value of V will become 0, as described above.
  */
 public class Test01 {
 
