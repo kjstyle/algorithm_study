@@ -57,7 +57,7 @@ import static java.util.Comparator.comparing;
  thus, John needs to add some leading zeros to the numbers.
  각 그룹 내의 각 사진의 숫자는 같은 자릿수(length)를 가져야한다.
  (해당 그룹에서 가장 큰 숫자의 자릿수와 같으면 됨)
- 따라서, John은 숫자앞에 붙는 몇개의 0을 추가해야한다.
+ 따라서,John은 숫자앞에 붙는 몇개의 0을 추가해야한다.
 
  The new name of the photo should end with the extension, which should remain the same.
  새 이름의 사진은 동일한 확장자로 끝나야한다.
@@ -226,24 +226,24 @@ public class Test02 {
 
 		Map<String, List<Photo>> groupByCityMap = photoList
 			.stream()
-			.sorted(comparing((Photo p) -> p.created))
-			.collect(Collectors.groupingBy(Photo::getCity));
+			.sorted(comparing((Photo p) -> p.created)) // 파일 생성일 순으로 정렬을 먼저하고
+			.collect(Collectors.groupingBy(Photo::getCity)); // 도시명으로 그루핑
 
 
 		List<Photo> resultList = new ArrayList<>();
 
 		groupByCityMap.forEach((city, list) -> {
 			int listCount = list.size();
-			int serial = (int) (Math.log10(listCount) + 1);
+			int serial = (int) (Math.log10(listCount) + 1); // 자릿수를 구하고
 			for (int i = 0; i < listCount; i++) {
-				String newIndexNo = String.format("%0" + serial + "d", (i + 1));
-				String newFileName = city + newIndexNo;
+				String newIndexNo = String.format("%0" + serial + "d", (i + 1)); // 자릿수에 맞춰서 0으로 채워진 번호를 생성
+				String newFileName = city + newIndexNo; // 새파일명(확장자제외)을 만듬 -> 확장자는 setter에서 구현.. TODO : 도메인 클래스로 이관필요
 				list.get(i).setNewFileName(newFileName);
 				resultList.add(list.get(i));
 			}
 		});
 
-		resultList.sort(Comparator.comparing(Photo::getOriginalIndex));
+		resultList.sort(Comparator.comparing(Photo::getOriginalIndex)); // 본래 정렬 순서대로 다시 정렬
 
 		StringBuilder result = new StringBuilder();
 
