@@ -19,12 +19,10 @@ public class Test04 {
 	}
 
 	/**
-	 *
 	 * @param A 중복이 존재하는 정수가 담긴 배열
 	 * @param X 배열 내에서 찾고자 하는 정수
-	 * @return
-	 * 	1	별견되면
-	 * 	0	발견안되면
+	 * @return 1    별견되면
+	 * 0	발견안되면
 	 */
 	int solution(int[] A, int X) {
 		int N = A.length;

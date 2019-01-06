@@ -59,12 +59,21 @@ import static java.util.Comparator.comparing;
  The new names of the photos are returned in the same order as in the
  given string
  Assume that:
- . M is an integer within the range [1.1001;
- Each year is an integer within the range [2000..2020];
- Each line of the input string is of the format
- くくphotoname>>·<<extension>>, << city-name >> ,
-
-
+ M is an integer within the range [1.100]
+ . Each year is an integer within the range [2000..2020];
+ . Each line of the input string is of the format"
+ くくphotoname>>·<<extension>>, <<city-name>> ,
+ yyyy-mm-dd hh:mm: ss" and lines are separated with
+ newline characters;
+ Each photo name (without extension)) and city name
+ consists only of at least 1 and at most 20 letters from the
+ English alphabet;
+ . Each name of the city starts with a capital letter and is
+ followed by lower case letters;
+ No two photos from the same location share the same date
+ and time
+ Each extension is jpg" png" or "jpeg
+ In your solution, focus on correctness.
  */
 public class Test02 {
 
