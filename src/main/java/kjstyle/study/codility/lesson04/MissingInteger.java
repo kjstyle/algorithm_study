@@ -1,7 +1,10 @@
 package kjstyle.study.codility.lesson04;
 
+import org.junit.Assert;
+
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  This is a demo task.
@@ -12,11 +15,11 @@ import java.util.HashSet;
 
  that, given an array A of N integers,
  returns the smallest positive integer (greater than 0) that does not occur in A.
- 배열A 없는 0초과인 가장 작은 양수를 리털
+ 배열A에 누락된 것으로 추정되는 가장 작은 양수(0초과를 리턴
 
  For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.
 
- Given A = [1, 2, 3], the function should return 4.
+ Given A = [1, 2, 3], the function should return 4. <- 0을 초과한 1부터 3까지 모두 연속된 숫자가
 
  Given A = [−1, −3], the function should return 1.
 
@@ -30,30 +33,30 @@ public class MissingInteger {
 
 	public static void main(String[] args) {
 		MissingInteger missingInteger = new MissingInteger();
-		int[] A = {1, 3, 6, 4, 1, 2};
 
-		System.out.println("A{1, 3, 6, 4, 1, 2} : 5 = " + missingInteger.solution(A));
+		int[] A = {1, 3, 6, 4, 1, 2};
+		Assert.assertEquals("given {1, 3, 6, 4, 1, 2}", 5, missingInteger.solution(A));
 
 		int[] B = {-2, -3};
-		System.out.println("B{-2, -3} : 1 = " + missingInteger.solution(B));
+		Assert.assertEquals("given {-2,-3}", 1, missingInteger.solution(B));
 
 		int[] C = {1, 2, 3};
-		System.out.println("C{1, 2, 3} : 4 = " + missingInteger.solution(C));
+		Assert.assertEquals("given {1, 2, 3}", 4, missingInteger.solution(C));
 
 		int[] D = {2};
-		System.out.println("D{2} : 1 = " + missingInteger.solution(D));
+		Assert.assertEquals("given {2}", 1, missingInteger.solution(D));
 
 		int[] E = {1};
-		System.out.println("E{1} : 2 = " + missingInteger.solution(E));
+		Assert.assertEquals("given {1}", 2, missingInteger.solution(E));
 
 		int[] F = {4, 5, 6, 2};
-		System.out.println("F{4, 5, 6, 2} : 1 = " + missingInteger.solution(F));
+		Assert.assertEquals("given {4, 5, 6, 2}", 1, missingInteger.solution(F));
 
 		int[] G = {1};
-		System.out.println("G{1} : 2 = " + missingInteger.solution(G));
+		Assert.assertEquals("given {1}", 2, missingInteger.solution(G));
 
 		int[] H = {90, 91, 92, 93};
-		System.out.println("H{90, 91, 92, 93} : 1 = " + missingInteger.solution(H));
+		Assert.assertEquals("given {{90, 91, 92, 93}}", 1, missingInteger.solution(H));
 	}
 
 	/**
@@ -205,7 +208,7 @@ public class MissingInteger {
 	 * @return
 	 */
 	public int solution(int[] A) {
-		HashSet<Integer> hs = new HashSet<Integer>();
+		Set<Integer> hs = new HashSet<>();
 
 		for (int num : A) {
 			hs.add(num);
@@ -216,6 +219,6 @@ public class MissingInteger {
 				return i;
 			}
 		}
-		return 1;
+		return 1; // 모두 음수인 경우에 for loop을 다 돌고 여기로 들어옴, 여기에서 리턴되는 경우는 21억번 다 돌아버린 것
 	}
 }

@@ -24,7 +24,7 @@ package kjstyle.study.codility.lesson01;
 
  N is an integer within the range [1..2,147,483,647].
 
- 1과 1사이의 0의 개수를 zeroCount라고 하면
+ 1과 1사이의 채워졌있는 0의 개수를 zeroCount라고 하면
  zeroCount가 가장 큰 것을 찾으면 되는 문제
  */
 public class BinaryGap {
