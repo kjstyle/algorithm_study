@@ -1,5 +1,9 @@
 package kjstyle.study.codility.lesson02;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,17 +46,12 @@ import java.util.Set;
  */
 public class OddOccurrencesInArray {
 
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		int[] A = {9, 3, 9, 3, 9, 7, 9};
-		OddOccurrencesInArray oddOccurrencesInArray = new OddOccurrencesInArray();
-		int oddOccurrenceNumber = oddOccurrencesInArray.solution(A);
-		System.out.println(oddOccurrenceNumber);
-
-		int oddOccurrenceNumberByBitOperation = oddOccurrencesInArray.solutionByBitOperation(A);
-		System.out.println(oddOccurrenceNumberByBitOperation);
-
-		int oddOccurrenceNumberByBlog = oddOccurrencesInArray.solutionOnBlog(A);
-		System.out.println(oddOccurrenceNumberByBlog);
+		Assert.assertEquals(Arrays.toString(A), 7, this.solution(A));
+		Assert.assertEquals(Arrays.toString(A), 7, this.solutionByBitOperation(A));
+		Assert.assertEquals(Arrays.toString(A), 7, this.solutionOnBlog(A));
 	}
 
 	/**

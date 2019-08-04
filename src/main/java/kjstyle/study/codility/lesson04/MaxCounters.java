@@ -1,5 +1,7 @@
 package kjstyle.study.codility.lesson04;
 
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  You are given N counters, initially set to 0, and you have two possible operations on them:
@@ -66,14 +68,12 @@ package kjstyle.study.codility.lesson04;
  */
 public class MaxCounters {
 
-	public static void main(String[] args) {
-		MaxCounters maxCounters = new MaxCounters();
+	@Test
+	public void test() {
 		int N = 5;
 		int[] A = {3, 4, 4, 6, 1, 4, 4};
-		int[] result = maxCounters.solution(N, A);
-		for (int num : result) {
-			System.out.println(num);
-		}
+		int[] expected = { 3, 2, 2, 4, 2 };
+		Assert.assertArrayEquals(expected, this.solution(N, A));
 	}
 
 	public int[] solution(int N, int[] A) {

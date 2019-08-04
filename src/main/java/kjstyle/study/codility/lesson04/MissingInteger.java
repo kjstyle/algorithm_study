@@ -1,6 +1,7 @@
 package kjstyle.study.codility.lesson04;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -31,32 +32,56 @@ import java.util.Set;
  */
 public class MissingInteger {
 
-	public static void main(String[] args) {
-		MissingInteger missingInteger = new MissingInteger();
-
+	@Test
+	public void test() {
 		int[] A = {1, 3, 6, 4, 1, 2};
-		Assert.assertEquals("given {1, 3, 6, 4, 1, 2}", 5, missingInteger.solution(A));
+		Assert.assertEquals(Arrays.toString(A), 5, this.solution(A));
 
 		int[] B = {-2, -3};
-		Assert.assertEquals("given {-2,-3}", 1, missingInteger.solution(B));
+		Assert.assertEquals(Arrays.toString(B), 1, this.solution(B));
 
 		int[] C = {1, 2, 3};
-		Assert.assertEquals("given {1, 2, 3}", 4, missingInteger.solution(C));
+		Assert.assertEquals(Arrays.toString(C), 4, this.solution(C));
 
 		int[] D = {2};
-		Assert.assertEquals("given {2}", 1, missingInteger.solution(D));
+		Assert.assertEquals(Arrays.toString(D), 1, this.solution(D));
 
 		int[] E = {1};
-		Assert.assertEquals("given {1}", 2, missingInteger.solution(E));
+		Assert.assertEquals(Arrays.toString(E), 2, this.solution(E));
 
 		int[] F = {4, 5, 6, 2};
-		Assert.assertEquals("given {4, 5, 6, 2}", 1, missingInteger.solution(F));
+		Assert.assertEquals(Arrays.toString(F), 1, this.solution(F));
 
 		int[] G = {1};
-		Assert.assertEquals("given {1}", 2, missingInteger.solution(G));
+		Assert.assertEquals(Arrays.toString(G), 2, this.solution(G));
 
 		int[] H = {90, 91, 92, 93};
-		Assert.assertEquals("given {{90, 91, 92, 93}}", 1, missingInteger.solution(H));
+		Assert.assertEquals(Arrays.toString(H), 1, this.solution(H));
+	}
+
+	/**
+	 * HashSet에 발견된 숫자를 담아서
+	 * 1부터 정수최댓값까지 숫차적으로 HashSet에 들어있는지 확인해서
+	 * 없는게 발견되면 바로 해당 index리턴
+	 * 사실 인터넷 찾아서 참고해서 푼 것..ㅡㅡ
+	 * 무식해보이지만 최악의 경우라도 최대 정수크기만큼까지만 루프를 도는거라 결국 O(N)
+	 *
+	 * @param A
+	 * @return
+	 */
+	public int solution(int[] A) {
+		Set<Integer> hs = new HashSet<>();
+
+		for (int num : A) {
+			hs.add(num);
+		}
+
+		for (int i = 1; i < Integer.MAX_VALUE; i++) {
+			if (hs.contains(i) == false) {
+				return i;
+			}
+		}
+		return 1; // 모두 음수인 경우에 for loop을 다 돌고 여기로 들어옴, 여기에서 리턴되는 경우는 21억번 다 돌아버린 것
 	}
 
 	/**
@@ -195,30 +220,5 @@ public class MissingInteger {
 			}
 		}
 		return 1;
-	}
-
-	/**
-	 * HashSet에 발견된 숫자를 담아서
-	 * 1부터 정수최댓값까지 숫차적으로 HashSet에 들어있는지 확인해서
-	 * 없는게 발견되면 바로 해당 index리턴
-	 * 사실 인터넷 찾아서 참고해서 푼 것..ㅡㅡ
-	 * 무식해보이지만 최악의 경우라도 최대 정수크기만큼까지만 루프를 도는거라 결국 O(N)
-	 *
-	 * @param A
-	 * @return
-	 */
-	public int solution(int[] A) {
-		Set<Integer> hs = new HashSet<>();
-
-		for (int num : A) {
-			hs.add(num);
-		}
-
-		for (int i = 1; i < Integer.MAX_VALUE; i++) {
-			if (hs.contains(i) == false) {
-				return i;
-			}
-		}
-		return 1; // 모두 음수인 경우에 for loop을 다 돌고 여기로 들어옴, 여기에서 리턴되는 경우는 21억번 다 돌아버린 것
 	}
 }

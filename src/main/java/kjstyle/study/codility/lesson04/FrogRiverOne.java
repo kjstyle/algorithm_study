@@ -1,5 +1,9 @@
 package kjstyle.study.codility.lesson04;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
 import java.util.HashSet;
 
 /**
@@ -12,13 +16,12 @@ import java.util.HashSet;
  */
 public class FrogRiverOne {
 
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		int X = 2;
 		int[] A = {2, 2, 1, 2, 2};
 
-		FrogRiverOne frogRiverOne = new FrogRiverOne();
-		int result = frogRiverOne.solution(X, A);
-		System.out.println(result);
+		Assert.assertEquals(Arrays.toString(A), 2, this.solution(X, A));
 	}
 
 	public int solution(int X, int[] A) {

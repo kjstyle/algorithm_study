@@ -1,5 +1,10 @@
 package kjstyle.study.codility.lesson03;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  A non-empty array A consisting of N integers is given. Array A represents numbers on a tape.
 
@@ -48,45 +53,10 @@ package kjstyle.study.codility.lesson03;
  */
 public class TapeEquilibrium {
 
-	public static void main(String[] args) {
-		TapeEquilibrium tapeEquilibrium = new TapeEquilibrium();
+	@Test
+	public void test() {
 		int[] A = {3, 1, 2, 4, 3};
-		int result = tapeEquilibrium.solution(A);
-		System.out.println(result);
-	}
-
-	/**
-	 * 일단 O(n^2) 으로 탈락
-	 *
-	 * @param A
-	 * @return
-	 */
-	public int solutionTryAndFail(int[] A) {
-		int min = Integer.MAX_VALUE;
-
-		int len = A.length;
-
-		long sumPart1 = 0;
-		long sumPart2 = 0;
-		int diff = 0;
-
-		for (int P = 1; P < (len - 1); P++) {
-			sumPart1 = 0;
-			sumPart2 = 0;
-			for (int j = 0; j < len; j++) {
-				if (j < P) {
-					sumPart1 += A[j];
-				} else {
-					sumPart2 += A[j];
-				}
-			}
-			diff = (int) Math.abs(sumPart2 - sumPart1);
-			if (diff < min) {
-				min = diff;
-			}
-		}
-
-		return min;
+		Assert.assertEquals(Arrays.toString(A), 1, this.solution(A));
 	}
 
 	/**
@@ -128,6 +98,40 @@ public class TapeEquilibrium {
 				min = diff;
 			}
 		}
+		return min;
+	}
+
+	/**
+	 * 일단 O(n^2) 으로 탈락
+	 *
+	 * @param A
+	 * @return
+	 */
+	public int solutionTryAndFail(int[] A) {
+		int min = Integer.MAX_VALUE;
+
+		int len = A.length;
+
+		long sumPart1 = 0;
+		long sumPart2 = 0;
+		int diff = 0;
+
+		for (int P = 1; P < (len - 1); P++) {
+			sumPart1 = 0;
+			sumPart2 = 0;
+			for (int j = 0; j < len; j++) {
+				if (j < P) {
+					sumPart1 += A[j];
+				} else {
+					sumPart2 += A[j];
+				}
+			}
+			diff = (int) Math.abs(sumPart2 - sumPart1);
+			if (diff < min) {
+				min = diff;
+			}
+		}
+
 		return min;
 	}
 }

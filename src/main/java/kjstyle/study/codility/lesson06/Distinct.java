@@ -1,5 +1,8 @@
 package kjstyle.study.codility.lesson06;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,40 +27,13 @@ import java.util.Set;
  */
 public class Distinct {
 
-	public static void main(String[] args) {
-		Distinct distinct = new Distinct();
+	@Test
+	public void test() {
 		int[] A = {2, 1, 1, 2, 3, 1};
-		if (3 == distinct.solution(A)) {
-			System.out.println("success");
-		} else {
-			System.out.println("fail A{2,1,1,2,3,1}");
-		}
+		Assert.assertEquals(Arrays.toString(A), 3, this.solution(A));
 
 		int[] B = {1};
-		if (1 == distinct.solution(B)) {
-			System.out.println("success");
-		} else {
-			System.out.println("fail A{1}");
-		}
-	}
-
-	/**
-	 * 중복을 허용하지 않는 Set의 특성을 이용
-	 *
-	 * @param A
-	 * @return
-	 */
-	public int solutionA(int[] A) {
-		if (A.length == 0) return 0;
-		if (A.length == 1) return 1;
-
-		Set<Integer> distinctSet = new HashSet<Integer>();
-
-		for (int i : A) {
-			distinctSet.add(i);
-		}
-
-		return distinctSet.size();
+		Assert.assertEquals(Arrays.toString(B), 1, this.solution(B));
 	}
 
 	/**
@@ -81,5 +57,24 @@ public class Distinct {
 			}
 		}
 		return count;
+	}
+
+	/**
+	 * 중복을 허용하지 않는 Set의 특성을 이용
+	 *
+	 * @param A
+	 * @return
+	 */
+	private int solutionA(int[] A) {
+		if (A.length == 0) return 0;
+		if (A.length == 1) return 1;
+
+		Set<Integer> distinctSet = new HashSet<Integer>();
+
+		for (int i : A) {
+			distinctSet.add(i);
+		}
+
+		return distinctSet.size();
 	}
 }

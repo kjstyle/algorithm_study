@@ -1,5 +1,8 @@
 package kjstyle.study.codility.lesson01;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
  * Binary Gap
  A binary gap within a positive integer N is any maximal sequence of consecutive zeros
@@ -29,10 +32,9 @@ package kjstyle.study.codility.lesson01;
  */
 public class BinaryGap {
 
-	public static void main(String[] args) {
-		BinaryGap binaryGap = new BinaryGap();
-		int result = binaryGap.solution(328);
-		System.out.println(result);
+	@Test
+	public void test() {
+		Assert.assertEquals(2, this.solution(328));
 	}
 
 	public int solution(int N) {

@@ -1,5 +1,8 @@
 package kjstyle.study.codility.lesson02;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
  n array A consisting of N integers is given. Rotation of the array means that each element is shifted right by one index,
  and the last element of the array is moved to the first place.
@@ -45,19 +48,15 @@ package kjstyle.study.codility.lesson02;
  */
 public class CyclicRotation {
 
-	public static void main(String[] args) {
-		CyclicRotation cyclicRotation = new CyclicRotation();
+	@Test
+	public void test() {
 		int[] A = {3, 8, 9, 7, 6};
 		int K = 14;
-		int[] result = cyclicRotation.solution2(A, K);
-		for (int i = 0; i < result.length; i++) {
-			System.out.print(result[i]);
-			System.out.print(",");
-		}
+		int[] expected = { 8, 9, 7, 6, 3 };
+		Assert.assertArrayEquals(expected, this.solution(A, K));
 	}
 
 	public int[] solution(int[] A, int K) {
-
 		// K가 배열 사이즈보다 큰 경우 배열의 배수마다 본래 배치가 됨
 		// 나머지연산으로 실제 쉬프팅할 수를 구함
 		int realShiftCount = (K > A.length && A.length > 0) ? K % (A.length) : K;

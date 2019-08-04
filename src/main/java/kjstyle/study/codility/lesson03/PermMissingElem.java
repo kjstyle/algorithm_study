@@ -1,5 +1,10 @@
 package kjstyle.study.codility.lesson03;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  An array A consisting of N different integers is given.
  The array contains integers in the range [1..(N + 1)], which means that exactly one element is missing.
@@ -31,11 +36,10 @@ package kjstyle.study.codility.lesson03;
  */
 public class PermMissingElem {
 
-	public static void main(String[] args) {
-		PermMissingElem permMissingElem = new PermMissingElem();
+	@Test
+	public void test() {
 		int[] A = {2, 3, 1, 5};
-		int lostNum = permMissingElem.solution(A);
-		System.out.println(lostNum);
+		Assert.assertEquals(Arrays.toString(A), 4, this.solution(A));
 	}
 
 	public int solution(int[] A) {

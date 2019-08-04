@@ -1,5 +1,8 @@
 package kjstyle.study.codility.lesson05;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
  A non-empty array A consisting of N integers is given.
  The consecutive elements of array A represent consecutive cars on a road.
@@ -52,16 +55,38 @@ package kjstyle.study.codility.lesson05;
  */
 public class CountDiv {
 
-	public static void main(String[] args) {
-		CountDiv countDiv = new CountDiv();
-		System.out.println("[1,1,11] : 0 = " + countDiv.solution(1, 1, 11));
-		System.out.println("[6,11,2] : 3 = " + countDiv.solution(6, 11, 2));
-		System.out.println("[0, 0, 11] : 1 = " + countDiv.solution(0, 0, 11));
-		System.out.println("[10, 10, 5] : 1 = " + countDiv.solution(10, 10, 5));
-		System.out.println("[11, 14, 2] : 2 = " + countDiv.solution(11, 14, 2));
+	@Test
+	public void test() {
+		Assert.assertEquals(0, this.solution(1, 1, 11));
+		Assert.assertEquals(3, this.solution(6, 11, 2));
+		Assert.assertEquals(1, this.solution(0, 0, 11));
+		Assert.assertEquals(1, this.solution(10, 10, 5));
+		Assert.assertEquals(2, this.solution(11, 14, 2));
+	}
 
-		System.out.println("0%11 = " + 0 % 11);
-
+	/**
+	 * 범위의 시작하는 값인 A는 나누어 떨어지는 여부가 중요 -> 카운트에 포함될되는지에 영향을 줌
+	 * 범위 끝 값인 B는 나눈 몫이 나누어떨어지든 소수점이 발생하든지 간에 5.xxx든 5.0이든 5는 범위 끝값으로 유효
+	 * 나눈 값이 2 .. 5.xxx  라면 5-2 인 3이 발견되는 배수의 개수가 됨
+	 * 단, 두수가 같은데 나누어 떨어지는 경우 그냥 1로 카운팅
+	 * 단 , 0 % 11 = 0 , 즉 0을 어떤 수로 나누면 나누어 떨어진다고 봐야하는게 최고 함정이었음.
+	 *
+	 * @param A
+	 * @param B
+	 * @param K
+	 * @return
+	 */
+	public int solution(int A, int B, int K) {
+		int devidedCount = 0;
+		if (A % K == 0)
+			devidedCount++;
+		if (A != B) {
+			int firstQuotient = A / K;
+			int lastQuotient = B / K;
+			int diff = lastQuotient - firstQuotient;
+			devidedCount += diff;
+		}
+		return devidedCount;
 	}
 
 	/**
@@ -98,30 +123,6 @@ public class CountDiv {
 		int devidedCount = 0;
 		for (int i = A; i <= B; i++) {
 			if (i % K == 0) devidedCount++;
-		}
-		return devidedCount;
-	}
-
-	/**
-	 * 범위의 시작하는 값인 A는 나누어 떨어지는 여부가 중요 -> 카운트에 포함될되는지에 영향을 줌
-	 * 범위 끝 값인 B는 나눈 몫이 나누어떨어지든 소수점이 발생하든지 간에 5.xxx든 5.0이든 5는 범위 끝값으로 유효
-	 * 나눈 값이 2 .. 5.xxx  라면 5-2 인 3이 발견되는 배수의 개수가 됨
-	 * 단, 두수가 같은데 나누어 떨어지는 경우 그냥 1로 카운팅
-	 * 단 , 0 % 11 = 0 , 즉 0을 어떤 수로 나누면 나누어 떨어진다고 봐야하는게 최고 함정이었음.
-	 *
-	 * @param A
-	 * @param B
-	 * @param K
-	 * @return
-	 */
-	public int solution(int A, int B, int K) {
-		int devidedCount = 0;
-		if (A % K == 0) devidedCount++;
-		if (A != B) {
-			int firstQuotient = A / K;
-			int lastQuotient = B / K;
-			int diff = lastQuotient - firstQuotient;
-			devidedCount += diff;
 		}
 		return devidedCount;
 	}

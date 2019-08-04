@@ -1,5 +1,8 @@
 package kjstyle.study.codility.lesson06;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.Arrays;
 
 /**
@@ -47,20 +50,6 @@ import java.util.Arrays;
  * 음수양수가 섞여있을 경우 -> 0,1번째 엘리먼트가 음수이고 마지막 엘리먼트가 양수인 경우만 또다른 최대를 구해봐서 맨뒤 3개 곱과 비교해서 큰 놈을 리턴
  */
 public class MaxProductOfThree {
-	public static void main(String[] args) {
-		MaxProductOfThree maxProductOfThree = new MaxProductOfThree();
-		int[] A = {-3, 1, 2, -2, 5, 6};
-		System.out.println("기댓값 : 60");
-		System.out.println("실제값 : " + maxProductOfThree.solution(A));
-
-		int[] B = {-10, -2, -4};
-		System.out.println("B 기댓값 : -80");
-		System.out.println("B 실제값 : " + maxProductOfThree.solution(B));
-
-		int[] C = {-5, 5, -5, 4};
-		System.out.println("C 기댓값 : 125");
-		System.out.println("C 실제값 : " + maxProductOfThree.solution(C));
-	}
 
 	public int solution(int[] A) {
 		if (A.length < 3) return 0;
@@ -72,5 +61,17 @@ public class MaxProductOfThree {
 			result = (temp > result) ? temp : result;
 		}
 		return result;
+	}
+
+	@Test
+	public void test() {
+		int[] A = { -3, 1, 2, -2, 5, 6 };
+		Assert.assertEquals(Arrays.toString(A), 60, this.solution(A));
+
+		int[] B = { -10, -2, -4 };
+		Assert.assertEquals(Arrays.toString(B), -80, this.solution(B));
+
+		int[] C = { -5, 5, -5, 4 };
+		Assert.assertEquals(Arrays.toString(C), 125, this.solution(C));
 	}
 }

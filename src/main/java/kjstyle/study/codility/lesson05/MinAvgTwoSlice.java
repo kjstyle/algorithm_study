@@ -1,59 +1,22 @@
 package kjstyle.study.codility.lesson05;
 
-/**
- * Created by kjstyle on 2018. 9. 6..
- */
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
+
 public class MinAvgTwoSlice {
 
-	public static void main(String[] args) {
-		MinAvgTwoSlice minAvgTwoSlice = new MinAvgTwoSlice();
+	@Test
+	public void test() {
 		int[] A = {4, 2, 2, 5, 1, 5, 8};
-		int result = minAvgTwoSlice.solution(A);
-		System.out.println(result);
+		Assert.assertEquals(Arrays.toString(A), 1, this.solution(A));
 
 		int[] B = {10000, -10000};
-		int resultB = minAvgTwoSlice.solution(B);
-		System.out.println(resultB);
+		Assert.assertEquals(Arrays.toString(B), 0, this.solution(B));
 
 		int[] C = {-3, -5, -8, -4, -10};
-		int resultC = minAvgTwoSlice.solution(C);
-		System.out.println(resultC);
-
-	}
-
-	public int solutionTry01(int[] A) {
-
-		int len = A.length;
-		long[] accSum = new long[len];
-		int[][] prefixAvg = new int[len][len];
-
-		for (int i = 0; i < len; i++) {
-			if (i > 0) {
-				accSum[i] = accSum[i - 1] + A[i];
-			} else {
-				accSum[i] = A[i];
-			}
-		}
-
-		double tempPartialSum;
-		double tempAvg;
-		double minAvg = Integer.MAX_VALUE;
-		int minAvgIndex = 0;
-		for (int i = 0; i < len - 1; i++) {
-			for (int j = i + 1; j < len; j++) {
-				if (i > 0) {
-					tempPartialSum = accSum[j] - accSum[i - 1];
-				} else {
-					tempPartialSum = accSum[j];
-				}
-				tempAvg = tempPartialSum / (j - i + 1);
-				if (tempAvg < minAvg) {
-					minAvg = tempAvg;
-					minAvgIndex = i;
-				}
-			}
-		}
-		return minAvgIndex;
+		Assert.assertEquals(Arrays.toString(C), 2, this.solution(C));
 	}
 
 	/**
@@ -94,5 +57,40 @@ public class MinAvgTwoSlice {
 			minStartIdx = N - 2;
 		}
 		return minStartIdx;
+	}
+
+	public int solutionTry01(int[] A) {
+
+		int len = A.length;
+		long[] accSum = new long[len];
+		int[][] prefixAvg = new int[len][len];
+
+		for (int i = 0; i < len; i++) {
+			if (i > 0) {
+				accSum[i] = accSum[i - 1] + A[i];
+			} else {
+				accSum[i] = A[i];
+			}
+		}
+
+		double tempPartialSum;
+		double tempAvg;
+		double minAvg = Integer.MAX_VALUE;
+		int minAvgIndex = 0;
+		for (int i = 0; i < len - 1; i++) {
+			for (int j = i + 1; j < len; j++) {
+				if (i > 0) {
+					tempPartialSum = accSum[j] - accSum[i - 1];
+				} else {
+					tempPartialSum = accSum[j];
+				}
+				tempAvg = tempPartialSum / (j - i + 1);
+				if (tempAvg < minAvg) {
+					minAvg = tempAvg;
+					minAvgIndex = i;
+				}
+			}
+		}
+		return minAvgIndex;
 	}
 }

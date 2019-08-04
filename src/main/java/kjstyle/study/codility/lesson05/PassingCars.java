@@ -1,5 +1,10 @@
 package kjstyle.study.codility.lesson05;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  A non-empty array A consisting of N integers is given.
  The consecutive elements of array A represent consecutive cars on a road.
@@ -42,11 +47,10 @@ package kjstyle.study.codility.lesson05;
  */
 public class PassingCars {
 
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		int[] A = {0, 1, 0, 1, 1};
-		PassingCars passingCars = new PassingCars();
-		int result = passingCars.solution(A);
-		System.out.println("A -> expected result : 5 = " + result);
+		Assert.assertEquals(Arrays.toString(A), 5, this.solution(A));
 	}
 
 	public int solution(int[] A) {

@@ -1,5 +1,8 @@
 package kjstyle.study.codility.lesson04;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.Arrays;
 
 /**
@@ -48,11 +51,26 @@ import java.util.Arrays;
  */
 public class PermCheck {
 
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		int[] A = {4, 1, 3};
-		PermCheck permCheck = new PermCheck();
-		int result = permCheck.solution(A);
-		System.out.println(result);
+		Assert.assertEquals(Arrays.toString(A), 2, this.solution(A));
+	}
+
+	public int solution(int[] A) {
+		int len = A.length;
+
+		// 정렬시킨 후
+		Arrays.sort(A);
+		for (int i = 1; i < len; i++) {
+			// 현재 엘리먼트와 이전 엘리먼트 사이의 간격이 1이 아닌 경우 지금 엘리먼트 바로 직전의 수가 누락된 녀석임
+			if ((A[i] - A[i - 1]) != 1) {
+				return A[i] - 1;
+			}
+		}
+		// loop를 통과했고 배열의 길이와 마지막 요소의 값이 같을 경우 순열로 인정
+		// 놓친 케이스 = 2 인 경우 1이 누락된 순열임
+		return (len == A[len - 1]) ? 1 : 0;
 	}
 
 	/**
@@ -71,21 +89,5 @@ public class PermCheck {
 		// 시작값은 무조건 1
 		long originalSum = (1 + max) * max / 2;
 		return (originalSum == elementSum) ? 1 : 0;
-	}
-
-	public int solution(int[] A) {
-		int len = A.length;
-
-		// 정렬시킨 후
-		Arrays.sort(A);
-		for (int i = 1; i < len; i++) {
-			// 현재 엘리먼트와 이전 엘리먼트 사이의 간격이 1이 아닌 경우 지금 엘리먼트 바로 직전의 수가 누락된 녀석임
-			if ((A[i] - A[i - 1]) != 1) {
-				return A[i] - 1;
-			}
-		}
-		// loop를 통과했고 배열의 길이와 마지막 요소의 값이 같을 경우 순열로 인정
-		// 놓친 케이스 = 2 인 경우 1이 누락된 순열임
-		return (len == A[len - 1]) ? 1 : 0;
 	}
 }

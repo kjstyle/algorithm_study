@@ -1,5 +1,8 @@
 package kjstyle.study.codility.lesson06;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.Arrays;
 
 /**
@@ -60,18 +63,16 @@ import java.util.Arrays;
  */
 public class Triangle {
 
-	public static void main(String[] args) {
-		Triangle triangle = new Triangle();
-
+	@Test
+	public void test() {
 		int[] A = {10, 2, 5, 1, 8, 20};
-		System.out.println("A = {10,2,5,1,8,20} ==> 기댓값 : 1, 실제값 = " + triangle.solution(A));
+		Assert.assertEquals(Arrays.toString(A), 1, this.solution(A));
 
 		int[] B = {10, 50, 5, 1};
-		System.out.println("B = {10,50,5,1} ==> 기댓값 : 0, 실제값 = " + triangle.solution(B));
+		Assert.assertEquals(Arrays.toString(B), 0, this.solution(B));
 
 		int[] C = {5, 3, 3};
-		System.out.println("C = {5,3,3} ==> 기댓값 : 1, 실제값 = " + triangle.solution(C));
-
+		Assert.assertEquals(Arrays.toString(C), 1, this.solution(C));
 	}
 
 	public int solution(int[] A) {
