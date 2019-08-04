@@ -13,57 +13,57 @@ import static java.util.Comparator.comparing;
 
 /**
  John likes to travel. He has visited a lot of cities over many years.
- John은 여행을 좋아한다. 그는 몇해에 걸처 수많은 도시를 방문했다.
+ John은 여행을 좋아합니다. 그는 몇해에 걸처 수많은 도시를 방문했습니다
 
  Whenever he visits a city, he takes a few photos and saves them on his computer.
- 도시를 방문할 때마다, 그는 몇장의 사진을 촬영하고, 그 사진을 그의 컴퓨터에 저장한다.
+ 도시를 방문할 때마다, 그는 몇장의 사진을 촬영하고, 그 사진을 그의 컴퓨터에 저장합니다
 
  Each photo has a name with an extension ("jpg", "png" or jpeg")
  and there is a record of the name of the city where the photo was taken and the time and date the photo;
  for example: "photo.jpg,Warsaw, 2013-09-05 14:08:15"
  각 사진은 jpg,png,jpeg의 확장자를 가진 이름을 가지며
- 사진이 촬영된 도시와 사진 시간과 일자의 record가 있다.
+ 사진이 촬영된 도시와 사진 시간과 일자의 record가 있습니다
 
  Note that, in some rare cases,
  photos from different locations may share the time and date,
  due to timezone differences.
- 드믄 경우지만, 다른 장소의 사진이 서로다른 timezone 때문에 시간과 일자가 섞일 수 있다.
+ 드믄 경우지만, 다른 장소의 사진이 서로다른 timezone 때문에 시간과 일자가 섞일 수 있습니다
 
 
  John notices that his way of filing photos on his computer has become a mess.
- John은 그의 컴퓨터 상의 사진파일링의 방법이 엉망이 되었음을 알게되었다.
+ John은 그의 컴퓨터 상의 사진파일링의 방법이 엉망이 되었음을 알게되었습니다
 
  He wants to reorganize the photos.
- 그는 사진들을 재구성하고자 한다.
+ 그는 사진들을 재구성하고자 합니다
 
  First he decides to group the photos by city,
  then, within each such group, sort the photos by the time
  they were taken and finally assign consecutive natural numbers to the
  photos, starting from 1.
- 첫번째로, 그는 도시를 기준으로 사진을 그루핑하기로 결심했다.
+ 첫번째로, 그는 도시를 기준으로 사진을 그룹핑하기로 결심했습니다
  각 그룹내에서는
  그 사진들이 촬영된 시간을 기주능로 정렬을 시키고,
- 최종적으로는 1부터 시작하는 자연수의 연속된 번호를 할당한다.
+ 최종적으로는 1부터 시작하는 자연수의 연속된 번호를 할당합니다
 
  Afterwards he intends to rename all the photos.
- 이후에 그는 모든 사진을 rename하려고 하는 것이다.
+ 이후에 그는 모든 사진을 rename하려고 하는 것입니다
 
  The new name of each photo should begin with the name of the city followed by the number
  already assigned to that photo.
- 각 사진의 새 파일명은 사진에 이미 할당된 숫자에 따라 도시의 이름을 가지고 시작해야한다.
+ 각 사진의 새 파일명은 사진에 이미 할당된 숫자에 따라 도시의 이름을 가지고 시작해야합니다
 
  The number of every photo in each group should have the same length
  (equal to the length of the largest number in this group),
  thus, John needs to add some leading zeros to the numbers.
- 각 그룹 내의 각 사진의 숫자는 같은 자릿수(length)를 가져야한다.
+ 각 그룹 내의 각 사진의 숫자는 같은 자릿수(length)를 가져야합니다
  (해당 그룹에서 가장 큰 숫자의 자릿수와 같으면 됨)
- 따라서,John은 숫자앞에 붙는 몇개의 0을 추가해야한다.
+ 따라서,John은 숫자앞에 붙는 몇개의 0을 추가해야합니다
 
  The new name of the photo should end with the extension, which should remain the same.
- 새 이름의 사진은 동일한 확장자로 끝나야한다.
+ 새 이름의 사진은 동일한 확장자로 끝나야합니다
 
  Your task is to help John by finding the new name of each photo.
- 당신의 작업은 각 사진의 새이름을 찾는 것에 대해 John을 돕는 것이다
+ 당신의 작업은 각 사진의 새이름을 찾는 것에 대해 John을 도와주는 것입니다
 
  Each of John's photos has the format:
  각 사진은 다음의 포맷이다.
@@ -75,12 +75,12 @@ import static java.util.Comparator.comparing;
  only of letters of the English alphabet and supply the name of the photo,
  the file name extension and the city name, respectively. Be aware that the
  names of the photos may not be unique
- 각기 사진,파일명의 확장자,도시명이 영문 알파멧의 문자만으로 지어져야한다.
- 사진 파일들의 이름이 유일하지 않을 수도 있음에 주의해라.
+ 각기 사진,파일명의 확장자,도시명은 영문 알파멧의 문자만으로 이름지어져야만합니다
+ 사진 파일들의 이름이 유일하지 않을 수도 있음에 명심해야합니다
 
 
  Write a function:
- 다음과 같은 함수를 작성하시오.
+ 다음과 같은 함수를 작성하세요
  class Solution {
  public String solution(String s);
  }
@@ -90,7 +90,7 @@ import static java.util.Comparator.comparing;
  returns the string representing the list of the new names of all photos
  (the order of photos should stay the same)
  M개의 사진의 리스트가 표현된 문자열이 주이지고,
- 모든 사진의 새이름의 리스트가 표현된 문자열이 리턴된다.
+ 모든 사진의 새이름의 리스트가 표현된 문자열이 리턴됩니다.
  (사진의 순서는 동일하게 유지된다.)
 
 
@@ -116,7 +116,7 @@ import static java.util.Comparator.comparing;
 
 
  your function should return
- 당신이 만든 함수는 아래와 같이 리턴해야한다.
+ 작성하는 함수는 아래와 같이 리턴해야합니다.
 
  Warsaw02.jpg
  Londonl.png
@@ -142,43 +142,43 @@ import static java.util.Comparator.comparing;
  런던에서의 2장의 사진으로 1부터 2까지로 채번되었고
 
  and three photos in Paris (numbered from 1 to 3)
- 파리에서의 3장의 사진으로 1부터 3까지 채번되었다
+ 파리에서의 3장의 사진으로 1부터 3까지 채번되어 있습니다.
 
  The new names of the photos are returned in the same order as in the given string.
- 주어진 문자열의 동일한 순서대로, 새로운 사진의 이름들이 리턴되어야한다.
+ 주어진 문자열의 동일한 순서대로, 새로운 사진의 이름들이 리턴되어야합니다
 
  Assume that:
- 가정은 :
+ 아래의 가정하에 코딩하세요
 
  - M is an integer within the range [1..100]
- M은 1~100까지 내의 정수이다.
+ M은 1~100까지 내의 정수입니다
 
  - Each year is an integer within the range [2000..2020];
- 각 연도는 2000~2020 내의 정수이다
+ 각 연도는 2000~2020 내의 정수입니다
 
  - Each line of the input string is of the format
  "くくphotoname>>·<<extension>>, <<city-name>> , yyyy-mm-dd hh:mm:ss"
  and lines are separated withnewline characters;
- 입력된 문자열의 각 행은 다음의 포맷이다
+ 입력된 문자열의 각 행은 다음의 포맷입니다
  "사진명.확장자 도시명, yyyy-mm-dd hh:mm:ss"
- 라인들은 newline character로 구분되어진다
+ 라인들은 newline character로 구분되어집니다
 
  - Each photo name (without extension)) and city name
  consists only of at least 1 and at most 20 letters from the English alphabet;
- 각 사진명(확장자를 제외한)과 도시명은 오직 영문 알파벳을 사용한 최소 1개 부터 최대 20글자로 구성되어야한다.
+ 각 사진명(확장자를 제외한)과 도시명은 오직 영문 알파벳을 사용하며, 최소 1자 부터 최대 20자로 구성되어야합니다
 
  - Each name of the city starts with a capital letter and is followed by lower case letters;
- 각 도시의 이름은 대문자로 시작하고, 그 뒤의 글자들은 소문자이다.
+ 각 도시의 이름은 대문자로 시작하고, 그 뒤의 글자들은 소문자입니다
 
  - No two photos from the same location share the same date and time
- 동일한 장소에서 동일한 날짜와 시간을 가진 2장의 사진은 존재하지 않는다.
+ 동일한 장소에서 동일한 날짜와 시간을 가진 2장의 사진이 존재하는 경우는 없습니다
 
  - Each extension is jpg" png" or "jpeg
- 확장자는 jpg, png, jpeg 뿐이다.
+ 확장자는 jpg, png, jpeg 만 존재합니다
 
 
  In your solution, focus on correctness.
- 너의 솔루션은, 정확성에 포커스를 맞춰라.
+ 성능보다는 정확성에 초점을 맞추어 작성하세요
 
  */
 public class Test02 {
