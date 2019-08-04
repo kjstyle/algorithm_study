@@ -1,4 +1,4 @@
-package kjstyle.programmers.level1;
+package kjstyle.programmers.level1.skilltest;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import org.junit.Test;
  * 문자열 s의 길이 : 50 이하의 자연수
  * 문자열 s는 알파벳으로만 이루어져 있습니다.
  */
-public class SkillTest01 {
+public class CharPair {
 
 	@Test
 	public void test() {

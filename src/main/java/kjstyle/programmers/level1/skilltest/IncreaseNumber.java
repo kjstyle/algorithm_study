@@ -1,4 +1,4 @@
-package kjstyle.programmers.level1;
+package kjstyle.programmers.level1.skilltest;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import java.util.Arrays;
  * 4	 3	[4,8,12]
  * -4	 2	[-4, -8]
  */
-public class SkillTest02 {
+public class IncreaseNumber {
 
 	@Test
 	public void testCase1() {
